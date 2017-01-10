@@ -7,12 +7,12 @@ public class HeapUtil {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		// int[] a = { -3, 4, 2, 5, 6, 7, 1, 0, -5, -8, 9, 10, -1, 13, -6 };
+		int[] a = { -3, 4, 2, 5, 6, 7, 1, 0, -5, -8, 9, 10, -1, 13, -6 };
 
-		 int[] a = {1,2,3,4,5,6,7};
+		// int[] a = {1,2,3,4,5,6,7};
 
-//		int[] a = new int[] { 10, 32, 44, 65, 78, 87, 76, 54, 43, 34, 56, 99,
-//				9, 3, 4, 2, 7, 1, 6, 60 };
+		// int[] a = new int[] { 10, 32, 44, 65, 78, 87, 76, 54, 43, 34, 56, 99,
+		// 9, 3, 4, 2, 7, 1, 6, 60 };
 
 		System.out.println("Before heap:" + Arrays.toString(a));
 
@@ -105,15 +105,22 @@ public class HeapUtil {
 
 	private static void maxHeap2(int[] data, int lastIndex) {
 
-		for (int i = lastIndex / 2-1; i >= 0; i--) {
+		//lastIndex= array.length - 1
+		//所以(lastIndex+1)/2-1等于上层最后一个有子节点的节点在数组中的索引
+		//(lastIndex+1)/2-1=(lastIndex-1)/2
+		for (int i = (lastIndex - 1) / 2; i >= 0; i--) {
 			// 保存当前正在判断的节点
 			int k = i;
-			// 若当前节点的子节点存在
-			while (2 * k + 1 <= lastIndex) {
+			
+		
+			
+			// 若当前节点的左节点存在
+			while (2 * k + 1 <= lastIndex) {//
+				
 				// biggerIndex总是记录较大节点的值,先赋值为当前判断节点的左子节点
 				int biggerIndex = 2 * k + 1;
 				if (biggerIndex < lastIndex) {
-					// 若右子节点存在，否则此时biggerIndex应该等于 lastIndex
+					// 若右子节点存在，比较左右子节点大小，右节点不存在biggerIndex为左节点
 					if (data[biggerIndex] < data[biggerIndex + 1]) {
 						// 若右子节点值比左子节点值大，则biggerIndex记录的是右子节点的值
 						biggerIndex++;
@@ -122,13 +129,18 @@ public class HeapUtil {
 				if (data[k] < data[biggerIndex]) {
 					// 若当前节点值比子节点最大值小，则交换2者得值，交换后将biggerIndex值赋值给k
 					exchangeElements(data, k, biggerIndex);
-					k = biggerIndex;
+					k = biggerIndex; //k记录了原来的父节点被换到了什么位置，原来的父节点下来后不一定比子节点更大
+					//while循环继续去判断它对应的子树符不符合堆的性质并调整
+					System.out.println("k is "+k+" "+Arrays.toString(data));
+					
 				} else {
+					//父节点已经比子节点大了，不需要调整
 					break;
 				}
+				
+				//System.out.println();
 			}
 		}
 
 	}
-
 }
