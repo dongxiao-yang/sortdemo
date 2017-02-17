@@ -1,5 +1,8 @@
 package com.youku.data.sortdemo;
 
+import java.util.HashMap;
+import java.util.concurrent.PriorityBlockingQueue;
+
 
 
 /**
@@ -10,6 +13,7 @@ public class App {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 		
+		//HashMap<K, V>
 		
 		int parent = (2 - 1) >>> 1;
 //		
@@ -20,7 +24,7 @@ public class App {
 		//ArrayBlockingQueue<String> abq = new ArrayBlockingQueue<String>(1000);
 		
 		
-		PriorityBlockingQueue_copy<String> aa = new PriorityBlockingQueue_copy<String>();
+		PriorityBlockingQueue<String> aa = new PriorityBlockingQueue<String>();
 
 		int i = 30;
 		for (; i > 0; i--) {
